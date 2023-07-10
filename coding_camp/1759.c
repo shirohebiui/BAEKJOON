@@ -53,8 +53,8 @@ void sort_char(){
         for(int j=R; j>0; j--){
             for(int k=0; k+1<j; k++)
             {
-            if(B[i][k]>B[i][k+1]){          
-                tmp = B[i][k];         
+            if(B[i][k]>B[i][k+1]){
+                tmp = B[i][k];
                 B[i][k] = B[i][k+1];
                 B[i][k+1] = tmp;
             }
@@ -129,7 +129,7 @@ int main(void)
     
     int max = find_max(N, R);
 
-    B=(char**)malloc(sizeof(char)*(10000));//정체가무엇이냐
+    B=(char**)malloc(sizeof(char *)*max);//정체가무엇이냐
     for(int i=0;i<max;i++)
         B[i]=(char*)malloc(sizeof(char)*(R+1));//문자열로 만들 \0추가를 위해 +1
     arr=(char*)malloc(sizeof(char)*N);
