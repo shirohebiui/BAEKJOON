@@ -1,0 +1,7 @@
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/shirohebiui/BAEKJOON.git
+git push -u origin main
+토큰생성 : https://dev.classmethod.jp/articles/resolving-github-token-authentication-errors/
