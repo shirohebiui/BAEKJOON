@@ -1,27 +1,27 @@
 #include <stdio.h>
 /*
-백준의 int 는 2바이트로 추측
+N이 1이상이므로 N이 1일때 min max둘다 같은값이다.
 */
+
 int main()
 {
-    int N;
-    long tmp;
-    long max=-1000000;
-    long min=1000000;
-    scanf("%d", &N);
-    for(int i=0; i<N-1; i++)
+    long N;
+    scanf("%ld", &N);
+    long X;
+    long min;
+    long max;
+    scanf("%ld", &X);
+    max = X;
+    min = X;
+    for (int i = 1; i < N; i++)
     {
-        scanf("%ld ", &tmp);
-        if(arr[i] < min)
-            min=arr[i];
-        if(arr[i] > max)
-            max=arr[i];
+        scanf("%ld", &X);
+        if(X>max)
+            max = X;
+        else if(X<min)
+            min = X;
     }
-    scanf("%ld", &arr[N-1]);
-    if(arr[i] < min)
-        min=arr[i];
-    if(arr[i] > max)
-        max=arr[i];
-
-    printf("%ld %ld\n",min, max);
+    
+    printf("%ld %ld\n", min, max);
+    return 0;
 }
