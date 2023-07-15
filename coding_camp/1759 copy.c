@@ -53,8 +53,8 @@ void sort_char(){
         for(int j=R; j>0; j--){
             for(int k=0; k+1<j; k++)
             {
-            if(B[i][k]>B[i][k+1]){          
-                tmp = B[i][k];         
+            if(B[i][k]>B[i][k+1]){
+                tmp = B[i][k];
                 B[i][k] = B[i][k+1];
                 B[i][k+1] = tmp;
             }
