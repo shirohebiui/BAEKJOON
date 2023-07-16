@@ -22,6 +22,7 @@ int main()
     for(int i=0;i<n;i++)
         for(int j=0;j<m;j++)
             scanf("%lld", &arr[i][j]);
+    //여기까지가 초기입력
 
     for(int i=n-2;i>=0;i--)
         for(int j=0;j<m;j++)
@@ -46,10 +47,30 @@ int main()
         }
         printf("\n");
     } */
-
     long long sum=0;
+    /*
+    1   1
+    0   1
+    1   1
+    0   1 
+    */
+    if(m==1)
+    {
+        for(int i=0;i<n;i++)
+        {
+            sum+=arr[i][0];
+        }
+        if(sum == n)
+            sum = 1;
+        else
+            sum = 0;
+        printf("%lld\n", sum);
+    }
+    else
+    {
     for(int j=0;j<m;j++)
         sum+=arr[0][j]%1000000007;
     printf("%lld\n", sum);
+    }
     return 0;
 }
