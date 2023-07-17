@@ -9,39 +9,48 @@ char tmp[50];
 int arr[20000];
 int arr_count=0;
 int N;
-void sort_len(int i)
+
+int sort_dic(char *a, char *b)
+{
+    char *ptr_A = a;
+    char *ptr_B = b;
+    while(*ptr_A == *ptr_B)
+    {
+        ptr_A++;
+        ptr_B++;
+    }
+    //  A가 사전순으로 후순위인가?
+    //  O->1return , X->0return
+    if(*ptr_A < *ptr_B)
+        return 1;
+    else
+        return 0;
+}
+void sort(int i)
 {
     for(;i+1<N;i++)
     {
-        if(strlen(str[i])<strlen(str[i+1]))
+        long length_A = strlen(str[i]);
+        long length_B = strlen(str[i+1]);
+        if(length_A<length_B)
         {
+            //길이순 정렬
             memcpy(tmp, str[i], sizeof(char)*50);
             memcpy(str[i], str[i+1], sizeof(char)*50);
             memcpy(str[i+1], tmp, sizeof(char)*50);
         }
-        sort_len(i+1);
-    }
-}
-
-void sort_dic(int i)
-{
-    for(;i+1<N;i++)
-    {
-        if(strlen(str[i])==strlen(str[i+1]))
+        else if(length_A==length_B)
         {
-            int x=0;
-            while(str[i][x]==str[i+1][x])
-            {
-                x++;
-            }
-            if(str[i][x]<str[i+1][x])
+            //사전순 정렬
+            int go = sort_dic(str[i], str[i+1]);
+            if(go!=0)
             {
                 memcpy(tmp, str[i], sizeof(char)*50);
                 memcpy(str[i], str[i+1], sizeof(char)*50);
                 memcpy(str[i+1], tmp, sizeof(char)*50);
             }
         }
-        sort_dic(i+1);
+        sort(i+1);
     }
 }
 
@@ -52,8 +61,7 @@ int main()
     {
         scanf("%s", str[i]);
     }
-    sort_len(0);
-    sort_dic(0);
+    sort(0);
     for(int i=N-1;i>0;i--)
     {
         if(strcmp(str[i], str[i-1]) == 0)
