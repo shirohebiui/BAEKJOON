@@ -82,7 +82,7 @@ int main()
     } */
 
     for(int j=0;j<m;j++)
-        sum+=arr[0][j]%1000000007;
+        sum+=arr[0][j]%1000000007; //This value is the condition specified in the problem
     printf("%lld\n", sum);
 
     return 0;
