@@ -4,8 +4,8 @@
 길이가 짧은순 <- strlen
 길아가 같은경우 사전순 <-
 */
-char str[20000][50];
-char tmp[50];
+char str[20000][51];
+char tmp[51];
 int arr[20000];
 int arr_count=0;
 int N;

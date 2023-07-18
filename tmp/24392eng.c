@@ -16,11 +16,12 @@ the number of cases will be written on the top line (y==0)
 
 adding these together gives the total number of cases
 */
+
+long long arr[1001][1001]={0};
 int main()
 {
     //data input
     int n,m;
-    long long arr[1000][1000]={0};
     scanf("%d %d", &n, &m);
 
     for(int i=0;i<n;i++)
@@ -36,10 +37,12 @@ int main()
         {
             sum+=arr[i][0];
         }
-        if(sum == n)
+        if(sum == n){
             sum = 1;
-        else
+        }
+        else{
             sum = 0;
+        }
         printf("%lld\n", sum);
         return 0;
     }
@@ -61,12 +64,13 @@ int main()
         {
             if(arr[i][j]==1)
             {
-            if(j==0)        //left end
+            if(j==0){        //left end
                 arr[i][j] = arr[i+1][j]+arr[i+1][j+1];
-            else if(j==m)   //right end
+            }else if(j==m){   //right end
                 arr[i][j] = arr[i+1][j-1]+arr[i+1][j];
-            else            //middle
+            }else{            //middle
                 arr[i][j] = arr[i+1][j-1]+arr[i+1][j]+arr[i+1][j+1];
+            }
             }
         }
 

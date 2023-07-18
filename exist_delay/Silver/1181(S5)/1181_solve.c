@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+linked list는 신이야!
+*/
 typedef struct _double_node
 {
 	char *data;
@@ -93,10 +96,10 @@ void print_all(double_node *p)
 	}
 }
 
-void main(void)
+int main()
 {
 	init_dlist();
-    char arr[20000][50];
+    char arr[20000][51];
     int N;
     scanf("%d", &N);
     for(int i=0;i<N;i++)
@@ -105,4 +108,5 @@ void main(void)
         Insert_sort(arr[i]);
     }
     print_all(head->next);
+    return 0;
 }

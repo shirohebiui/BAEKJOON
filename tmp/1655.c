@@ -1,32 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//0이면 짝수 1이면 홀수
-int count = 1;
+//좌우 가중치
+int right_w = 0;
+int left_w = 0;
 
 typedef struct Node
 {
 	int key;
-	struct Node *prev;
-	struct Node *next;
+	struct Node *parent;
+	struct Node *left;
+	struct Node *right;
+	int left_exist = 0;
 } Node;
 
-Node *head, *tail, *center;
-
-void init_dlist(int k)
+Node *root;
+void init_dlist(void)
 {
-	head = (Node*)malloc(sizeof(Node));
-	tail = (Node*)malloc(sizeof(Node));
-	center = (Node*)malloc(sizeof(Node));
-	head->next = center;
-	head->prev = head;
-	tail->next = tail;
-	tail->prev = center;
-	center->next = tail;
-	center->prev = head;
-	
-	center->key = k;
+		root = (Node*)malloc(sizeof(Node));
 }
+
 
 Node *Insert_Node_in_order_of_size(int k)
 {
@@ -34,27 +27,39 @@ Node *Insert_Node_in_order_of_size(int k)
 	Node *i;
 	s = (Node*)malloc(sizeof(Node));
 	i = (Node*)malloc(sizeof(Node));
-//노드를 오름차순 정렬하기위해 탐색
-	
-	//중앙 좌측 탐색 head~tail
-	s = head->next;
-	while(1){
-		if(s->key > k)
-			break;
-		s = s->next;
-		if(s==center)
-			break;
+
+	//가중치 부여
+	if(k < root->key){
+		left_w++;
+	} else if(k >= root->key) {
+		right_w++;
 	}
 
-	
-	//현재 노드 s_node의 이전에 새로운 노드 삽입
-	i->key = k;
-	i->prev = s->prev;
-	i->next = s;
-	s->prev->next = i;
-	s->prev = i;
-		
-	
+	//노드 삽입 위치 탐색
+	s = root;
+	while(1)
+	{
+		if(k < s->key && s->left_exist != 0){
+			s = s->left;
+		} else {break;}
+
+		if(k >= s->key && s->right_exist != 0){
+			s = s->right;
+		} else {break;}
+	}
+
+	//노드 삽입
+	if(k < s->key){
+		i->key = k;
+		i->parent = s;
+		s->left = i;
+		s->left_exist
+	} else if(k >= s->key) {
+		i->key = k;
+		i->parent = s;
+		s->right = i;
+	}
+
 	//0 -> 짝, 1 -> 홀
 	count = ++count % 2;
 	return i;
@@ -79,7 +84,7 @@ void print_all(Node *p)
 	printf("\n");
 	while(p != tail)
 	{
-		printf(" %d     ", p->key);
+		printf("%d ", p->key);
 		p=p->next;
 	}
 }
@@ -97,10 +102,7 @@ int main()
 
 	//값 입력
 	int key;
-	scanf("%d", &key);
-	init_dlist(key);
-	print_center();
-	for(int j=0; j<max-1; j++)
+	for(int j=0; j<max; j++)
 	{
 		scanf("%d", &key);
 		Insert_Node_in_order_of_size(key);
