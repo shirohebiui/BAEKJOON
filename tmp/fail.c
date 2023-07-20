@@ -3,21 +3,21 @@
 #include <string.h>
 int N, M, V;
 int base[1001][10001]= {0};
-int count[1001] = {0};
-int check[1001] = {0};
-
-
+int count[1001] = {0}; //노드가 지닌 간선의갯수
+int check[1001] = {0}; //stdout 출력된 노드
+int visit[1001] = {0}; //방문한노드
+int wait[1001] = {0}; //대기열bfs
+int P=0, MAX=0; //현재 대기열 순번, 대기열 끝번호
 /*
+https://www.acmicpc.net/board/view/24356
+https://www.acmicpc.net/board/view/91929
 먼저 입력은 정점-정점의 간선을 N개 입력받는다.
 따라서 2차원 배열을 이용해
 정점A에서 시작되는 간선이 K개라면 base[A][0]~base[A][K]로 배열이 있고 각 값은 간선 반대편 정점이다.
 
-1. 입력이 순차적으로 이뤄질것이라는 보장이없다.
-따라서 내가 아는한 가장빠른 순차 삽입 방법인 이중 연결리스트를 써서 이를 해결했다.
+입력이 순차적으로 이뤄질것이라는 보장이없다.
+따라서 내가 할수있는 가장빠른 순차 삽입 방법인 이중 연결리스트를 써서 이를 해결했다.
 리스트를 초기화 후 정점V와 연결된 정점들을(배열에서) 노드에 정렬 삽입 후 노드에서 배열로 다시 저장하는방식으로 구현했다.
-삭제는 시간이 아까우므로 생략했다.
-
-2.dfs구현
 
 */
 typedef struct _Node
@@ -107,32 +107,42 @@ void delete_all_Nodes(void)
 
 void DFS(int V)
 {
-    if(check[V] == 0) {
-        check[V]=1;
-        printf("%d ", V);
-        for(int i=0; i<count[V]; i++)
+    if(visit[V] == 0)
+    {
+        visit[V]=1;
+    for(int i=0;i<count[V];i++)
+    {
+        int key = base[V][i];
+        if(check[key] == 0)
         {
-            int key = base[V][i];
-            DFS(key);
+            check[key] = 1;
+            printf("%d ", key);
         }
+        DFS(key);
+        
+    }
     }
 }
 
 void BFS(int V)
 {
-    for(int i=0; i<count[V];i++)
+    if(visit[V] == 0)
+    {
+        visit[V] = 1;
+    for(int i=0;i<count[V];i++)
     {
         int key = base[V][i];
-        if(check[key] == 0) {
+        if(visit[key] == 0)
+            wait[MAX++] = key;
+        
+        if(check[key] == 0)
+        {
             check[key] = 1;
             printf("%d ", key);
         }
     }
-    if(count[V] != 0)
-    for(int i=0; i<count[V];i++)
-    {
-        int key = base[V][i];
-        BFS(key);
+    if(P!=MAX)
+        BFS(wait[P++]);
     }
 }
 
@@ -140,13 +150,28 @@ int main()
 {
     //data input
     scanf("%d %d %d", &N, &M, &V);
-    int tmp_V;
-    for(int i=0; i<M; i++) //간선갯수만큼 입력이 들어옴
+    int sum = 0;
+    int line = 0;
+    while(1)
     {
+        if(2==M)
+            if(sum==N)
+                break;
+        if(line == M)
+            break;
+        line++;
         int A, B;
         scanf("%d", &A);
         scanf("%d", &B);
-        //입력은 간선의 나열일뿐 노드의 정렬이 되있지않다.
+        if(visit[A] == 0) {
+            visit[A] = 1;
+            sum++;
+        }
+        if(visit[B] == 0) {
+            visit[B] = 1;
+            sum++;
+        }
+        //입력은 간선의 나열일뿐 정렬이 돼있지않다.
         //따라서 2,4가 들어올경우 2[0]=4 , 4[0]=2 같은식으로 각노드에서 인접한 노드를 각각 저장하는식으로 할것이다.
         int count_A = count[A];
         int count_B = count[B];
@@ -159,6 +184,7 @@ int main()
             base[B][count_B] = A;
         }
     }
+    memset(visit, 0, sizeof(int) * 1001);
 
     //array sort
     init_dlist();
@@ -188,9 +214,19 @@ int main()
 
     //여기까지가 배열을 입력받아 오름차순으로 정렬
 
+    //DFS
+    check[V] = 1;
+    printf("%d ", V);
     DFS(V);
     printf("\n");
+
+    //다시 사용할 배열초기화
+    memset(visit, 0, sizeof(int) * 1001);
     memset(check, 0, sizeof(int) * 1001);
+
+    //BFS
+    check[V] = 1;
+    printf("%d ", V);
     BFS(V);
     printf("\n");
 

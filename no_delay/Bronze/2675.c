@@ -11,7 +11,7 @@ int main()
         scanf("%d %s", &loof, &s);
         int size = sizeof(s);
         for(int i=0;i<size;i++)
-        {   
+        {
             for(int j=0;j<loof;j++)
             {
                 p[loof*i + j] = s[i];
