@@ -4,7 +4,9 @@
         "stdio.h": "c",
         "string.h": "c",
         "ctype.h": "c",
-        "limits": "c"
+        "limits": "c",
+        "순열 조합": "c",
+        "start": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
