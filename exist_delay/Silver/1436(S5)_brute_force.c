@@ -9,7 +9,7 @@ int main()
     int N;
     scanf("%d", &N);
 
-    long cnt = 666;
+    long cnt = 665;
     while(N) {
         long tmp = cnt++;
         while(tmp > 600)
@@ -20,6 +20,6 @@ int main()
                 tmp/=10;
             }
     }
-    printf("%ld\n", cnt-1);
+    printf("%ld\n", cnt);
     return 0;
 }
