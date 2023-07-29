@@ -12,13 +12,14 @@ void swap(int *a, int *b) {
 int main()
 {
     int i, j;
-    for(i=0; i<MAX-1; i++) {
-        for(j=0; j<MAX-i-1; j++) {
+    for(i=0; i<MAX; i++) {
+        for(j=0; j<MAX-i; j++) {
             if(arr[j] > arr[j+1]) {
                 swap(&arr[j], &arr[j+1]);
             }
         }
     }
+    
     for(i=0; i<MAX; i++) {
         printf("%d ", arr[i]);
     }
@@ -31,7 +32,7 @@ int main()
             }
         }
     }
-
+    
     for(i=0; i<MAX; i++) {
         printf("%d ", arr[i]);
     }
