@@ -15,7 +15,7 @@ class Stack:
         self.top += 1
 
     def empty(self):
-        return self.top == 0    
+        return self.top == 0
 
 def is_valid_bracket(s):
     st = Stack()

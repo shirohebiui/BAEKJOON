@@ -144,7 +144,7 @@ void delete_all_double_nodes(void)
 	}
 }
 
-void main(void)
+int main()
 {
 	double_node *t;
 	init_dlist();
@@ -194,15 +194,5 @@ void main(void)
 	delete_all_double_nodes();
 	print_all(head->next);
 
+	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
