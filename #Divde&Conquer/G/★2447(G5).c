@@ -41,7 +41,7 @@ void print_all_2D(char arr[][MAX], int row, int col) {
 }
 
 int main() {
-    int N; 
+    int N;
     scanf("%d", &N);
     init_star(N);
     for(int i=3; i<N; i*=3) {
