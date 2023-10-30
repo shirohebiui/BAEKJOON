@@ -12,7 +12,7 @@ void init_star(int size) {
     star[0][0] = '*'; star[0][1] = '*'; star[0][2] = '*';
     star[1][0] = '*'; star[1][1] = ' '; star[1][2] = '*';
     star[2][0] = '*'; star[2][1] = '*'; star[2][2] = '*';
-} 
+}
 
 void paint(int size) {
     for(int i=0; i<size; i++) {
