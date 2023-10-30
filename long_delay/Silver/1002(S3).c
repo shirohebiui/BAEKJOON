@@ -17,7 +17,7 @@ int main()
     {
     int x1, x2, y1, y2, r1, r2;
     scanf("%d %d %d %d %d %d", &x1, &y1, &r1, &x2, &y2, &r2);
-    double T = sqrt(abs(x1-x2)*abs(x1-x2)+abs(y1-y2)*abs(y1-y2));
+    double T = sqrt(abs_(x1-x2)*abs_(x1-x2)+abs_(y1-y2)*abs_(y1-y2));
     //printf("T: %d\n", T);
     if(x1==x2 && y1==y2 && r1==r2) //동접
         printf("-1\n");
