@@ -6,7 +6,7 @@ int count = 0 , size;
 
 int IsValid(int y) {
     for(int i=0; i<y; i++) {
-        if(map[y] == map[i] || abs_(map[y] - map[i]) == abs_(y - i))
+        if(map[y] == map[i] || abs(map[y] - map[i]) == abs(y - i)) // x1 == x2 || |x1-x2| == |y1-y2|
             return 0;
     }
     return 1;
