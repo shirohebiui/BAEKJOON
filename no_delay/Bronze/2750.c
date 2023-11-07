@@ -5,7 +5,7 @@
 
 typedef struct _double_node
 {
-	int prio;
+	int key;
 	struct _double_node *prev;
 	struct _double_node *next;
 } double_node;
@@ -31,7 +31,7 @@ double_node *Insert_double_node_in_order_of_size(int k)
 
 	if(head->next == tail)
 	{
-		i->prio = k;
+		i->key = k;
 		i->prev = head->prev;
 		i->next = tail->next;
 		head->next = i;
@@ -42,13 +42,13 @@ double_node *Insert_double_node_in_order_of_size(int k)
 		s = head->next;
 		while(1)
 		{
-			if(s->prio > k)
+			if(s->key > k)
 				break;
 			s = s->next;
 			if(s==tail)
 				break;
 		}
-		i->prio = k;
+		i->key = k;
 		i->prev = s->prev;
 		i->next = s;
 		s->prev->next = i;
@@ -60,7 +60,7 @@ void print_all(double_node *p)
 {
 	while(p != tail)
 	{
-		printf("%d\n", p->prio);
+		printf("%d\n", p->key);
 		p=p->next;
 	}
 }
