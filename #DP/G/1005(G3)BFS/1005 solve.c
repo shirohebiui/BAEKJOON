@@ -41,8 +41,8 @@ int main() {
         scanf("%d %d", &vertex, &edge); //정점갯수
         input_work();
         input_graph();
-        int goal; scanf(" %d", &goal);
-        printf("%d\n", dpbfs(goal));
+        int dest; scanf(" %d", &dest); //목표노드
+        printf("%d\n", dpbfs(dest));
     }
     return 0;
 }
