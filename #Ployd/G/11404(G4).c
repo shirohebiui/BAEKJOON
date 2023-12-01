@@ -13,7 +13,6 @@ void init();
 void Floyd();
 void print();
 
-
 int main() {
 	input(); //node, graph 가중치(비용)
 	Floyd(); //Floyd Algorithm
