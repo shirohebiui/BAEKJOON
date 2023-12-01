@@ -4,7 +4,7 @@
 
 typedef struct _double_node
 {
-	long key;
+	long score;
 	struct _double_node *prev;
 	struct _double_node *next;
 } double_node;
@@ -33,7 +33,7 @@ double_node *Insert_double_node_in_order_of_size(int k)
 
 	if(head->next == tail)
 	{
-		i->key = k;
+		i->score = k;
         i->next = tail;
         i->prev = head;
 		head->next = i;
@@ -45,13 +45,13 @@ double_node *Insert_double_node_in_order_of_size(int k)
         //조건을 만족한곳의 앞에 노드 삽입
 		while(1)
 		{
-			if(s->key > k)
+			if(s->score > k)
 				break;
 			s = s->next;
 			if(s==tail)
 				break;
 		}
-		i->key = k;
+		i->score = k;
 		i->prev = s->prev;
 		i->next = s;
 		s->prev->next = i;
@@ -64,7 +64,7 @@ void print_all(double_node *p)
 {
 	while(p != tail)
 	{
-		printf("%ld\n", p->key);
+		printf("%ld\n", p->score);
 		p=p->next;
 	}
 }
