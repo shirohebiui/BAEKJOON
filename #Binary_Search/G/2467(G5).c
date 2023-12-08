@@ -23,7 +23,7 @@ void swap(long *a, long *b) {
 void quick_sort(long *data, long start, long end) {
 	long left = start;
 	long right = end;
-    long pivot = data[ (left + right) / 2 ];
+    long pivot = data[(left + right)/2];
 	while(left<=right) {
 		while(abs_(data[left]) < abs_(pivot)) {
 			left++;

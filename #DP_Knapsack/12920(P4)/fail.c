@@ -9,7 +9,7 @@
 i번째에 다시 붙여 결론을 가져온다.
 */
 
-int A[MAX_ITEM][MAX_W] = {0, };
+int DP[MAX_ITEM][MAX_W] = {0, };
 
 void test(int W, int n);
 int sum(int *arr, int n);
@@ -21,17 +21,17 @@ int knapsack(int W, int *wt, int *val, int *cnt, int n) {
             
             for(int w=1; w<=W; w++) {
                 if(wt[i-1] > w) {
-                    A[j][w] = A[j-1][w];
+                    DP[j][w] = DP[j-1][w];
                 } else {
-                    A[j][w] = max(A[j-1][w], A[j-1][w-wt[i-1]] + val[i-1]);
+                    DP[j][w] = max(DP[j-1][w], DP[j-1][w-wt[i-1]] + val[i-1]);
                 }
             }
             //test(W , n+ sum(cnt, W));
         }
         if(cnt[i-1] > 1)
-            memmove(A[i], A[j-1], sizeof(int) * (W+1));
+            memmove(DP[i], DP[j-1], sizeof(int) * (W+1));
     }
-    return A[n][W];
+    return DP[n][W];
 }
 
 int main() {
@@ -52,7 +52,7 @@ void test(int W, int n) {
     printf("test\n");
     for(int i=1; i<=n; i++) {
         for(int w=1; w<=W; w++) {
-            printf(" %d", A[i][w]);
+            printf(" %d", DP[i][w]);
         }
         printf("\n");
     }
