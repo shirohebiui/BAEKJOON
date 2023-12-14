@@ -23,7 +23,7 @@ int tmp[1000000][2]={0};
 int M,N;
 int sub=0, max;
 int count;
-int flag = 1;
+int IsValid = 1;
 int sum_base()
 {
     int sum = 0;
@@ -84,7 +84,7 @@ void infect()
             tmp[count][0]=y;
             tmp[count][1]=x-1;
             count++;
-            flag=1;
+            IsValid=1;
         }
         if(x+1<M && base[y][x+1] == 0)
         {
@@ -93,7 +93,7 @@ void infect()
             tmp[count][0]=y;
             tmp[count][1]=x+1;
             count++;
-            flag=1;
+            IsValid=1;
         }
         if(y-1>=0 && base[y-1][x] == 0)
         {
@@ -102,7 +102,7 @@ void infect()
             tmp[count][0]=y-1;
             tmp[count][1]=x;
             count++;
-            flag=1;
+            IsValid=1;
         }
         if(y+1<N && base[y+1][x] == 0)
         {
@@ -111,7 +111,7 @@ void infect()
             tmp[count][0]=y+1;
             tmp[count][1]=x;
             count++;
-            flag=1;
+            IsValid=1;
         }
     }
     max = count;
@@ -135,7 +135,7 @@ int main()
             printf("%d\n", day);
             break;
         }
-        else if(flag == 0) //플래그가 바뀌지않았다면 더이상 전염이 불가능하다는 뜻
+        else if(IsValid == 0) //플래그가 바뀌지않았다면 더이상 전염이 불가능하다는 뜻
         {
             //cant more infect
             printf("-1\n");
@@ -143,7 +143,7 @@ int main()
         }
         else
         {
-            flag = 0;
+            IsValid = 0;
             infect(); //전염
             //print_arr();
             day++;

@@ -7,7 +7,7 @@ int change[1001][1001];
 int N, M, goal;
 int day=0;
 int sum=0;
-int flag=1;
+int IsValid=1;
 int x;
 
 /*
@@ -27,7 +27,7 @@ void infect(int i, int j)
         {
             if(base[i-1][j] == 1 || base[i][j-1]==1 ||base[i+1][j] ==1 || base[i][j+1]==1)
             {
-                flag = 1;
+                IsValid = 1;
                 sum++;
                 tmp[i][j]=1;
             }
@@ -79,9 +79,9 @@ int main()
     scanf("%d%d", &M, &N);
     goal=N*M;
     input_array();
-    while(sum!=goal && flag==1)
+    while(sum!=goal && IsValid==1)
     {
-        flag=0;
+        IsValid=0;
         infect(N-1,M-1);
     }
     //all_print_arr();
