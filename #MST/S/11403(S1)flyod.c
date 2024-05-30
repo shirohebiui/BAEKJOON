@@ -19,7 +19,7 @@ void input_init() {
     }
 }
 
-void Plyod() {
+void flyod() {
     int k, u, v;
     for(k=0;k<vsize;k++) {
         for(u=0;u<vsize;u++) {
